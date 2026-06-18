@@ -7,21 +7,21 @@ stages {
 stage( 'Build' ) { 
 steps { 
 sh  'mvn clean'
-  sh  'mvn install' 
+sh  'mvn install' 
 sh  'mvn package' 
 } 
 } 
 stage( 'Test' ) { 
-steps { 
+steps {
+  sh  'mvn test'
 } 
 } 
-sh  'mvn test' 
 stage( 'Deploy' ) { 
 steps { 
 echo  'Deploy Step' 
 sleep  10 
 } 
-} 
+}
 stage( 'Docker' ) { 
 steps { 
 echo  'Image step' 
