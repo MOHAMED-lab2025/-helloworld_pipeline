@@ -34,7 +34,9 @@ dockerimage =  ''
     stage('Docker Login') {
     steps {
         script {
-            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 630006583899.dkr.ecr.us-east-1.amazonaws.com'
+            withAWS(credentials: 'jenkins-ecr', region: 'us-east-1') {
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 630006583899.dkr.ecr.us-east-1.amazonaws.com'
+            }
         }
     }
 }
